@@ -4,9 +4,11 @@ const Dashboard = () => {
     const navigate = useNavigate();
 
     return (
-        <div>
+        <div className="dashboard-div">
             <h1>Dashboard</h1>
-            <button onClick={() => navigate("/")}>Logout</button>
+            <button className="btn" onClick={() => navigate("/")}>
+                Logout
+            </button>
         </div>
     );
 };

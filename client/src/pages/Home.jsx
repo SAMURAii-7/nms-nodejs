@@ -84,7 +84,10 @@ function Home() {
                             <button className="btn" type="submit">
                                 Log In
                             </button>
-                            <Link onClick={() => setIsLogin(false)}>
+                            <Link
+                                className="link"
+                                onClick={() => setIsLogin(false)}
+                            >
                                 Click here to Register
                             </Link>
                         </form>
@@ -120,7 +123,10 @@ function Home() {
                             <button className="btn" type="submit">
                                 Sign Up
                             </button>
-                            <Link onClick={() => setIsLogin(true)}>
+                            <Link
+                                className="link"
+                                onClick={() => setIsLogin(true)}
+                            >
                                 Click here to Login
                             </Link>
                         </form>
