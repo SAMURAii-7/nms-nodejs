@@ -1,7 +1,10 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { login, signup } from "../services/authServices";
 
 function Home() {
+    let navigate = useNavigate();
+
     const [signupData, setSignupData] = useState({
         name: "",
         email: "",
@@ -25,13 +28,31 @@ function Home() {
 
     async function handleLoginSubmit(e) {
         e.preventDefault();
-        console.log("logged in");
+        try {
+            const isLoggedIn = await login(loginData.email, loginData.password);
+            if (isLoggedIn.status >= 200 && isLoggedIn.status < 300) {
+                navigate("/dashboard");
+            }
+        } catch (err) {
+            alert("Email or Password incorrect! Please try again.");
+        }
         setLoginData({ email: "", password: "" });
     }
 
     async function handleSignupSubmit(e) {
         e.preventDefault();
-        console.log("signed up");
+        try {
+            const isSignedUp = await signup(
+                signupData.name,
+                signupData.email,
+                signupData.password
+            );
+            if (isSignedUp.status >= 200 && isSignedUp.status < 300) {
+                navigate("/dashboard");
+            }
+        } catch (err) {
+            alert("Signup failed, Please try again!");
+        }
         setSignupData({ name: "", email: "", password: "" });
     }
 
